@@ -12,11 +12,11 @@ body{
     height: 100vh;
 }
 
-.container{
+#container{
     position: relative;
 }
 
-.container #content{
+#container #content{
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4);
     top: 0;
@@ -27,7 +27,7 @@ body{
     justify-content: center;
 }
 
-.container #content i{
+#container #content i{
     color: #FFF;
     font-size: 90px;
     cursor: pointer;
