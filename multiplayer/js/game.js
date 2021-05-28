@@ -46,10 +46,12 @@ class Game{
         });
 
         this.socket.on("winnergame", () => {
+            clearInterval(this.jogo);
             alert("Você venceu o jogo!!!");
         });
 
         this.socket.on("lostgame", () => {
+            clearInterval(this.jogo);
             alert("Você perdeu o jogo!!!");
         });
     }
