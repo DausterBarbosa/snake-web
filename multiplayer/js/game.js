@@ -130,9 +130,9 @@ class Game{
             this.snake.pop();
         }
         else{
-            this.socket.emit("comidacapturada");
             this.updatePoints();
             this.verfifyPoints();
+            this.socket.emit("comidacapturada");
         }
     
         let newHead = {
