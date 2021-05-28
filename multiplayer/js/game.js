@@ -115,7 +115,6 @@ class Game{
     updatePoints(){
         this.points.innerHTML = `${this.snake.length}`;
         this.socket.emit("enemypoint");
-        this.verfifyPoints();
     }
     
     direcaoCobra(){
@@ -133,6 +132,7 @@ class Game{
         else{
             this.socket.emit("comidacapturada");
             this.updatePoints();
+            this.verfifyPoints();
         }
     
         let newHead = {
