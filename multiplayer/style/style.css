@@ -67,9 +67,16 @@ h1{
 
 .game .players-panel .points strong{
     color: green;
+    display: flex;
+    align-items: center;
 }
 
 .game .players-panel .points strong + strong{
     color: blue;
     margin-top: 20px;
+}
+
+.game .players-panel .points strong p{
+    font-size: 40px;
+    margin-left: 10px;
 }

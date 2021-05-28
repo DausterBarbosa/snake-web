@@ -1,27 +1,35 @@
 class Game{
     constructor({socket}){
-        this.canvas = document.getElementById("snake-game");
-        this.context = this.canvas.getContext("2d");
+        this.canvas;
+        this.context;
+        this.points;
+        this.enemypoints;
 
         this.socket = socket;
 
-        document.addEventListener("keydown", (event) => this.update(event));
-        
         this.box = 32;
         this.direction = "right";
         this.jogo;
         this.snake = [];
-
         this.enemysnake = [];
-
         this.snake[0] = {
             x: 8 * this.box,
             y: 8 * this.box,
         };
-
         this.food;
 
         this.connectSocket();
+        this.configureDom();
+    }
+
+    configureDom(){
+        this.canvas = document.getElementById("snake-game");
+        this.context = this.canvas.getContext("2d");
+
+        this.points = document.getElementById("mypoints");
+        this.enemypoints = document.getElementById("enemypoints");
+        
+        document.addEventListener("keydown", (event) => this.update(event));
     }
 
     connectSocket(){
@@ -31,6 +39,10 @@ class Game{
 
         this.socket.on("generateFood", (foodPosition) => {
             this.food = foodPosition;
+        });
+
+        this.socket.on("enemypoint", () => {
+            this.enemypoints.innerHTML = `${this.enemysnake.length}`;
         });
     }
 
@@ -80,6 +92,11 @@ class Game{
             }
         }
     }
+
+    updatePoints(){
+        this.points.innerHTML = `${this.snake.length}`;
+        this.socket.emit("enemypoint");
+    }
     
     direcaoCobra(){
         let snakeX = this.snake[0].x;
@@ -94,7 +111,8 @@ class Game{
             this.snake.pop();
         }
         else{
-            this.socket.emit("comidacapturada", true);
+            this.socket.emit("comidacapturada");
+            this.updatePoints();
         }
     
         let newHead = {
