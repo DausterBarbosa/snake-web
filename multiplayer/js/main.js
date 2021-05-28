@@ -1,6 +1,6 @@
 import Game from "./game.js";
 
-let socket = io("https://snakegameonline.herokuapp.com/");
+let socket = io("http://localhost:3000");
 
 let newGame = new Game({
     socket,

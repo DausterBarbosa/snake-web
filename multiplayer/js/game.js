@@ -44,6 +44,14 @@ class Game{
         this.socket.on("enemypoint", () => {
             this.enemypoints.innerHTML = `${this.enemysnake.length}`;
         });
+
+        this.socket.on("winnergame", () => {
+            alert("Você venceu o jogo!!!");
+        });
+
+        this.socket.on("lostgame", () => {
+            alert("Você perdeu o jogo!!!");
+        });
     }
 
     criarBG(){
@@ -88,14 +96,24 @@ class Game{
         for(let i = 1; i < this.snake.length; i++){
             if(this.snake[0].x == this.snake[i].x && this.snake[0].y == this.snake[i].y){
                 clearInterval(this.jogo);
-                alert("asdfasdf");
+                this.socket.emit("lostgame");
+                alert("Você perdeu o jogo!!!");
             }
+        }
+    }
+
+    verfifyPoints(){
+        if(this.snake.length == 20){
+            clearInterval(this.jogo);
+            this.socket.emit("winnergame");
+            alert("Você venceu o jogo!!!")
         }
     }
 
     updatePoints(){
         this.points.innerHTML = `${this.snake.length}`;
         this.socket.emit("enemypoint");
+        this.verfifyPoints();
     }
     
     direcaoCobra(){
