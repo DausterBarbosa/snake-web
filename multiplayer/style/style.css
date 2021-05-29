@@ -10,12 +10,12 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1{
     font-size: 50px;
     margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .game{
@@ -30,7 +30,7 @@ h1{
 
 .game .container #content{
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: lightgreen;
     top: 0;
     height: 100%;
     width: 100%;
@@ -39,16 +39,15 @@ h1{
     justify-content: center;
 }
 
-.game .container #content i{
+.game .container #content #counter{
     color: #FFF;
-    font-size: 90px;
-    cursor: pointer;
+    font-size: 70px;
+    text-align: center;
 }
 
 .game .players-panel{
     font-weight: bold;
     font-size: 40px;
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     padding: 40px
